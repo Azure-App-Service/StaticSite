@@ -11,9 +11,9 @@ sed -i "s/SSH_PORT/$SSH_PORT/g" /etc/ssh/sshd_config
 sed -i "s/PORT/$PORT/g" /etc/nginx/sites-available/mysite
 ln -s /etc/nginx/sites-available/mysite /etc/nginx/sites-enabled/mysite
 
-echo "Restarting nginx..."
-service nginx restart
-
+echo "Executing the script: " $@
 exec "$@"
 
-
+echo "Restarting nginx..."
+nginx -t
+service nginx restart 
